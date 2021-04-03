@@ -1546,7 +1546,7 @@ func (t *Topic) thisUserSub(sess *Session, pkt *ClientComMessage, asUid types.Ui
 			if err := store.Subs.Update(t.name, t.owner,
 				map[string]interface{}{
 					"ModeWant":  oldOwnerData.modeWant,
-					"ModeGiven": oldOwnerData.modeGiven}, false); err != nil {
+					"ModeGiven": oldOwnerData.modeGiven}, true); err != nil {
 				return nil, err
 			}
 			if err := store.Topics.OwnerChange(t.name, asUid); err != nil {
@@ -1763,7 +1763,7 @@ func (t *Topic) anotherUserSub(sess *Session, asUid, target types.Uid, asChan bo
 
 			// Save changed value to database
 			if err := store.Subs.Update(t.name, target,
-				map[string]interface{}{"ModeGiven": modeGiven}, false); err != nil {
+				map[string]interface{}{"ModeGiven": modeGiven}, true); err != nil {
 				return nil, err
 			}
 			t.perUser[target] = userData
