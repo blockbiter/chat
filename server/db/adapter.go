@@ -96,9 +96,9 @@ type Adapter interface {
 	TopicCreateP2P(initiator, invited *t.Subscription) error
 	// TopicGet loads a single topic by name, if it exists. If the topic does not exist the call returns (nil, nil)
 	TopicGet(topic string) (*t.Topic, error)
-	// TopicsForUser loads subscriptions for a given user. Reads public value.
+	// TopicsForUser loads subscriptions for a given user. Reads topic's public value.
 	TopicsForUser(uid t.Uid, keepDeleted bool, opts *t.QueryOpt) ([]t.Subscription, error)
-	// UsersForTopic loads users' subscriptions for a given topic. Public is loaded.
+	// UsersForTopic loads subscriptions for a given topic. Subscribers' Public is loaded.
 	UsersForTopic(topic string, keepDeleted bool, opts *t.QueryOpt) ([]t.Subscription, error)
 	// OwnTopics loads a slice of topic names where the user is the owner.
 	OwnTopics(uid t.Uid) ([]string, error)
