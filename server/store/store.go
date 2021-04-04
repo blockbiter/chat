@@ -538,10 +538,8 @@ func (SubsObjMapper) Get(topic string, user types.Uid) (*types.Subscription, err
 }
 
 // Update values of topic's subscriptions.
-func (SubsObjMapper) Update(topic string, user types.Uid, update map[string]interface{}, updateTS bool) error {
-	if updateTS {
-		update["UpdatedAt"] = types.TimeNow()
-	}
+func (SubsObjMapper) Update(topic string, user types.Uid, update map[string]interface{}) error {
+	update["UpdatedAt"] = types.TimeNow()
 	return adp.SubsUpdate(topic, user, update)
 }
 
